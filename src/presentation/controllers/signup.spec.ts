@@ -14,10 +14,6 @@ class EmailValidatorStub implements EmailValidator {
 }
 
 
-
-
-
-
 const makeSut = (): SutTypes => {
     const emailValidator = new EmailValidatorStub()
     const sut = new SignUpController(emailValidator)
