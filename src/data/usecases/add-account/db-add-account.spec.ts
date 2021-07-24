@@ -6,7 +6,7 @@ interface SutTypes {
     encrypter: Encrypter
 }
 
-const makeSut = (): SutTypes => {
+const makeEncrypter = (): Encrypter => {
 
     class EncrypterStub {
         async encrypt(password: string): Promise<string> {
@@ -14,7 +14,12 @@ const makeSut = (): SutTypes => {
         }
     }
 
-    const encrypter = new EncrypterStub()
+    return new EncrypterStub();
+}
+
+const makeSut = (): SutTypes => {
+
+    const encrypter = makeEncrypter()
     const addAccount = new DbAddAccount(encrypter)
 
     return {
@@ -23,7 +28,6 @@ const makeSut = (): SutTypes => {
 
 }
 describe("DbAddAccount", () => {
-
 
     test("Should call encrypter with correct password", async () => {
 
