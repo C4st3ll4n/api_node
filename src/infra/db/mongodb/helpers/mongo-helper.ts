@@ -1,11 +1,10 @@
 import {Collection, MongoClient} from "mongodb";
-import {AccountModel} from "../../../../domain/models/account";
 
 export const MongoHelper = {
     client: null as MongoClient,
 
-    async connect(url: String): Promise<void> {
-        this.client = await MongoClient.connect(process.env.MONGO_URL, {})
+    async connect(url: string): Promise<void> {
+        this.client = await MongoClient.connect(url)
     },
 
     async disconnect(): Promise<void> {
